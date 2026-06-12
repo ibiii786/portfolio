@@ -1,0 +1,303 @@
+/* ==========================================================================
+   Admin — login screen
+   ========================================================================== */
+.admin-login {
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--edge-padding);
+}
+
+.admin-login__panel {
+  width: 100%;
+  max-width: 400px;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  background: var(--color-surface);
+  padding: var(--space-lg) var(--space-md);
+}
+
+.admin-login__panel h1 {
+  font-size: var(--fs-lg);
+  margin-bottom: var(--space-xs);
+}
+
+.admin-login__panel p {
+  color: var(--color-text-muted);
+  font-size: var(--fs-sm);
+  margin-bottom: var(--space-md);
+}
+
+/* ==========================================================================
+   Form elements
+   ========================================================================== */
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4em;
+  margin-bottom: var(--space-sm);
+}
+
+.field label {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.field input,
+.field textarea,
+.field select {
+  font-family: var(--font-body);
+  font-size: var(--fs-base);
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  padding: 0.7em 0.9em;
+  color: var(--color-text);
+  transition: border-color 0.2s var(--ease-out);
+}
+
+.field input:focus,
+.field textarea:focus,
+.field select:focus {
+  border-color: var(--color-accent);
+}
+
+.field textarea {
+  resize: vertical;
+  min-height: 90px;
+}
+
+.field-hint {
+  font-size: var(--fs-xs);
+  color: var(--color-text-faint);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5em;
+  font-family: var(--font-mono);
+  font-size: var(--fs-sm);
+  letter-spacing: 0.05em;
+  padding: 0.8em 1.6em;
+  border-radius: 4px;
+  border: 1px solid var(--color-accent);
+  color: var(--color-bg);
+  background: var(--color-accent);
+  transition: opacity 0.2s var(--ease-out), transform 0.15s var(--ease-out);
+}
+
+.btn:hover {
+  opacity: 0.85;
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn--ghost {
+  background: transparent;
+  color: var(--color-text);
+  border-color: var(--color-border);
+}
+
+.btn--ghost:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+  opacity: 1;
+}
+
+.btn--danger {
+  background: transparent;
+  border-color: #5A2F30;
+  color: #E08A8C;
+}
+
+.btn--danger:hover {
+  background: #5A2F30;
+  opacity: 1;
+}
+
+.btn--full {
+  width: 100%;
+}
+
+.form-error {
+  font-size: var(--fs-sm);
+  color: #E08A8C;
+  margin-top: var(--space-xs);
+  min-height: 1.2em;
+}
+
+.form-success {
+  font-size: var(--fs-sm);
+  color: var(--color-accent);
+  margin-top: var(--space-xs);
+  min-height: 1.2em;
+}
+
+/* ==========================================================================
+   Admin dashboard
+   ========================================================================== */
+.admin-shell {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+}
+
+.admin-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-sm) var(--edge-padding);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.admin-header__title {
+  font-family: var(--font-mono);
+  font-size: var(--fs-sm);
+  letter-spacing: 0.1em;
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.admin-header__title::before {
+  content: '';
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  box-shadow: 0 0 12px var(--color-accent);
+}
+
+.admin-main {
+  flex: 1;
+  padding: var(--space-lg) var(--edge-padding);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-xl);
+  max-width: var(--content-max);
+  margin-inline: auto;
+  width: 100%;
+}
+
+@media (min-width: 1100px) {
+  .admin-main {
+    grid-template-columns: 380px 1fr;
+  }
+}
+
+.panel {
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  background: var(--color-surface);
+  padding: var(--space-md);
+}
+
+.panel h2 {
+  font-size: var(--fs-md);
+  margin-bottom: var(--space-md);
+}
+
+.field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-sm);
+}
+
+@media (max-width: 480px) {
+  .field-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* -- Project list -- */
+.admin-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.admin-card {
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  padding: var(--space-sm) var(--space-md);
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  background: var(--color-bg);
+}
+
+.admin-card__thumb {
+  width: 64px;
+  height: 48px;
+  border-radius: 4px;
+  background: var(--color-surface-raised);
+  flex-shrink: 0;
+  object-fit: cover;
+  border: 1px solid var(--color-border);
+}
+
+.admin-card__body {
+  flex: 1;
+  min-width: 0;
+}
+
+.admin-card__title {
+  font-family: var(--font-display);
+  font-size: var(--fs-base);
+  margin-bottom: 0.2em;
+}
+
+.admin-card__meta {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  color: var(--color-text-muted);
+  display: flex;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+}
+
+.admin-card__actions {
+  display: flex;
+  gap: var(--space-xs);
+  flex-shrink: 0;
+}
+
+.admin-card__actions .btn {
+  padding: 0.5em 1em;
+  font-size: var(--fs-xs);
+}
+
+.admin-empty {
+  font-family: var(--font-mono);
+  font-size: var(--fs-sm);
+  color: var(--color-text-faint);
+  text-align: center;
+  padding: var(--space-md) 0;
+}
+
+.image-preview {
+  margin-top: var(--space-xs);
+  width: 100%;
+  max-width: 200px;
+  border-radius: 4px;
+  border: 1px solid var(--color-border);
+  display: none;
+}
+
+.image-preview.is-visible {
+  display: block;
+}

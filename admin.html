@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Admin — Portfolio</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/admin.css" />
+</head>
+<body>
+
+  <!-- LOGIN SCREEN -->
+  <div class="admin-login" id="login-screen">
+    <div class="admin-login__panel">
+      <p class="eyebrow" style="margin-bottom: var(--space-xs);">Admin</p>
+      <h1>Sign in</h1>
+      <p>Enter your credentials to manage portfolio entries.</p>
+      <form id="login-form" novalidate>
+        <div class="field">
+          <label for="login-email">Email</label>
+          <input type="email" id="login-email" name="email" autocomplete="username" required />
+        </div>
+        <div class="field">
+          <label for="login-password">Password</label>
+          <input type="password" id="login-password" name="password" autocomplete="current-password" required />
+        </div>
+        <p class="form-error" id="login-error"></p>
+        <button type="submit" class="btn btn--full" id="login-submit">Sign in</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- DASHBOARD -->
+  <div class="admin-shell" id="dashboard" hidden>
+    <header class="admin-header">
+      <span class="admin-header__title">PORTFOLIO ADMIN</span>
+      <button class="btn btn--ghost" id="logout-btn">Sign out</button>
+    </header>
+
+    <main class="admin-main">
+
+      <!-- Add / Edit form -->
+      <section class="panel">
+        <h2 id="form-title">Add project</h2>
+        <form id="project-form" novalidate>
+          <input type="hidden" id="project-id" />
+
+          <div class="field">
+            <label for="title">Title</label>
+            <input type="text" id="title" required />
+          </div>
+
+          <div class="field">
+            <label for="description">Description</label>
+            <textarea id="description" required></textarea>
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="type">Type</label>
+              <select id="type" required>
+                <option value="design">Design (Figma)</option>
+                <option value="webapp">Web App</option>
+                <option value="ml">ML System</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="display-order">Display order</label>
+              <input type="number" id="display-order" value="0" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="tags">Tags</label>
+            <input type="text" id="tags" placeholder="React, Flask, TensorFlow" />
+            <span class="field-hint">Comma-separated. Shown as tags on the project card.</span>
+          </div>
+
+          <div class="field">
+            <label for="figma-embed">Figma embed URL</label>
+            <input type="url" id="figma-embed" placeholder="https://www.figma.com/embed?embed_host=share&url=..." />
+            <span class="field-hint">From Figma: Share → Embed → copy the link. Used for interactive prototypes.</span>
+          </div>
+
+          <div class="field">
+            <label for="live-url">Live URL</label>
+            <input type="url" id="live-url" placeholder="https://your-deployed-app.com" />
+          </div>
+
+          <div class="field">
+            <label for="github-url">GitHub URL</label>
+            <input type="url" id="github-url" placeholder="https://github.com/ibiii786/your-repo" />
+          </div>
+
+          <div class="field">
+            <label for="cover-image">Cover image</label>
+            <input type="file" id="cover-image" accept="image/*" />
+            <span class="field-hint">Used if no Figma embed is set. Recommended size: 1200×900px.</span>
+            <img id="image-preview" class="image-preview" alt="Preview" />
+            <input type="hidden" id="cover-image-url" />
+          </div>
+
+          <p class="form-error" id="form-error"></p>
+          <p class="form-success" id="form-success"></p>
+
+          <div style="display:flex; gap: var(--space-sm); margin-top: var(--space-sm);">
+            <button type="submit" class="btn" id="form-submit">Add project</button>
+            <button type="button" class="btn btn--ghost" id="form-cancel" hidden>Cancel edit</button>
+          </div>
+        </form>
+      </section>
+
+      <!-- Project list -->
+      <section class="panel">
+        <h2>Existing projects</h2>
+        <div class="admin-list" id="admin-list">
+          <p class="admin-empty">Loading…</p>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabase-client.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>
